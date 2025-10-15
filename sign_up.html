@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="css/sign_up.css">
+</head>
+<body>
+    <div class="login__form">
+        <form id="signUpForm" action="sign_up_into.php" method="post">
+            <label for="id">아이디 :</label>
+            <input type="text" name="id" id="id" oninput="removeWhitespace(this)"><br>
+            <label for="pw">비밀번호 :</label>
+            <input type="password" name="pw" id="pw" oninput="removeWhitespace(this)"><br>
+            <label for="hint">힌트 :</label>
+            <input type="text" name="hint" id="hint" oninput="removeWhitespace(this)"><br>
+            <label for="name">이름 :</label>
+            <input type="text" name="name" id="name" oninput="checkForNumbers(this); removeWhitespace(this)"><br>
+            <div class="button-container">
+                <input id="signUpButton" class="submit" type="button" value="회원 가입하기">
+                <input id="backButton" class="submit" type="button" value="처음으로 돌아가기">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function validateFormAndSubmit() {
+            if (validateForm()) {
+                if (confirm("회원 가입을 진행하시겠습니까?")) {
+                    document.getElementById('signUpForm').submit();
+                }
+            }
+        }
+
+        function validateForm() {
+            var id = document.getElementById("id").value;
+            var pw = document.getElementById("pw").value;
+    
+            // 아이디와 비밀번호에 최소 하나의 영문자 포함 여부 확인
+            var idHasLetter = /[a-zA-Z]/.test(id);
+            var pwHasLetter = /[a-zA-Z]/.test(pw);
+    
+            if (!idHasLetter || !pwHasLetter) {
+                alert("아이디와 비밀번호는 최소 하나의 영문자를 포함해야 합니다.");
+                return false;
+            }
+    
+            var fields = ["id", "pw", "hint", "name"];
+            for (var i = 0; i < fields.length; i++) {
+                var fieldValue = document.getElementById(fields[i]).value;
+                if (fieldValue.trim() === "") {
+                    alert("입력하지 않은 칸이 있습니다.");
+                    return false;
+                }
+                if (fieldValue.includes(" ")) {
+                    alert("입력한 값에 공백을 포함할 수 없습니다.");
+                    return false;
+                }
+            }
+            return true;
+        }
+    
+        document.getElementById('signUpButton').addEventListener('click', function() {
+            validateFormAndSubmit();
+        });
+    
+        document.getElementById('backButton').addEventListener('click', function() {
+            window.location.href = 'index.php';
+        });
+
+        function removeWhitespace(input) {
+            input.value = input.value.trim();
+        }
+
+        function checkForNumbers(input) {
+            var inputValue = input.value;
+            if (/\d/.test(inputValue)) {
+                alert("이름에 숫자를 입력할 수 없습니다.");
+                input.value = inputValue.replace(/\d/g, '');
+            }
+        }
+    </script>
+</body>
+</html>

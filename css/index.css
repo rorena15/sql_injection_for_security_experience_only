@@ -1,0 +1,146 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.login__form {
+    width: 300px;
+    padding: 15px; /* 20px → 15px로 축소 */
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    margin-bottom: 20px; /* 미션 섹션과 간격 */
+}
+
+.login__form h2 {
+    margin: 0 0 10px;
+    font-size: 20px; /* 컴팩트하게 조정 */
+    text-align: center;
+}
+
+.login__form label {
+    display: block;
+    margin: 4px 0 2px; /* 8px 0 4px → 4px 0 2px */
+    font-size: 14px;
+}
+
+.login__form input[type="text"],
+.login__form input[type="password"] {
+    width: 100%;
+    padding: 8px; /* 12px → 8px */
+    margin: 4px 0; /* 8px 0 → 4px 0 */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px; /* 10px → 8px */
+}
+
+.login__form input[type="submit"],
+.login__form input[type="button"],
+.secure-toggle button {
+    width: calc(48% - 6px); /* 동일 너비 유지 */
+    padding: 10px; /* 12px → 10px */
+    border: none;
+    border-radius: 5px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login__form input[type="submit"]:hover,
+.login__form input[type="button"]:hover,
+.secure-toggle button:hover {
+    background-color: #45a049;
+}
+
+.error {
+    color: #b00020;
+    margin: 4px 0;
+    font-size: 13px;
+    text-align: center;
+}
+
+.mission-section {
+    width: 300px; /* 로그인 폼과 동일 너비 */
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
+
+.mission-section h2 {
+    margin: 0 0 10px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.missions {
+    display: flex;
+    flex-direction: column; /* 세로 배치로 컴팩트하게 */
+    gap: 8px;
+}
+
+.mission-card {
+    background: #fff;
+    border: 1px solid #e8eef6;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.mission-card:hover {
+    background: #e8f4f8;
+}
+
+.secure-toggle {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.secure-toggle p {
+    margin: 0 0 8px;
+    font-size: 14px;
+}
+
+.secure-toggle span.secure-on {
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+.secure-toggle span.secure-off {
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+@media (max-width: 720px) {
+    .login__form, .mission-section {
+        width: 90%; /* 모바일에서 더 넓게 */
+    }
+    .login__form input[type="text"],
+    .login__form input[type="password"],
+    .login__form input[type="submit"],
+    .login__form input[type="button"],
+    .secure-toggle button {
+        width: 100%; /* 버튼도 전체 너비로 */
+        margin: 4px 0;
+    }
+    .button-container {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
