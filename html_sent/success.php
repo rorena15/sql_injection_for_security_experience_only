@@ -86,7 +86,7 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['cleared_levels'][5])) {
         </p>
         <p>
             <a href="index.php?logout=true">로그아웃</a> | 
-            <a href="index.php">메인 페이지로 돌아가기</a>
+            <a href="../index.php">메인 페이지로 돌아가기</a>
         </p>
     </div>
 
