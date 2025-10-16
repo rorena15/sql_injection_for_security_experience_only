@@ -276,7 +276,7 @@ error_log("Session state: username=" . ($_SESSION['username'] ?? 'none') . ", is
             } else if (!clearedLevels[level - 1]) {
                 showCustomAlert(`Level ${level - 1}을 먼저 클리어해야 Level ${level}에 접근할 수 있습니다!`, '미션 잠금');
             } else {
-                window.location.href = `/last_pro/html_sent/main_page.php?level=${level}&secure=${secureMode}`;
+                window.location.href = `./html_sent/main_page.php?level=${level}&secure=${secureMode}`;
             }
         }
 

@@ -1,18 +1,23 @@
 <?php
+$init_file_path = __DIR__ . '/../db_initialized.txt';
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-function csrf_token() {
+function csrf_token()
+{
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
     return $_SESSION['csrf_token'];
 }
 
-function check_csrf($token) {
+function check_csrf($token)
+{
     return isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], (string)$token);
 }
 
-function h($s) {
+function h($s)
+{
     return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
 }
 
@@ -22,7 +27,7 @@ try {
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // 초기화 플래그 확인: db_initialized.txt가 쓰기 가능한 디렉토리에 있는지 확인
-    if (!file_exists('db_initialized.txt')) {
+    if (!file_exists($init_file_path)) {
         // user_info 테이블 생성
         $db->exec("
             CREATE TABLE IF NOT EXISTS user_info (
@@ -80,7 +85,7 @@ try {
             ('FLAG{You_Cracked_The_Code}', TRUE)
         ");
 
-         // top_secret 테이블 생성
+        // top_secret 테이블 생성
         $db->exec("
             CREATE TABLE IF NOT EXISTS top_secret (
                 id INT UNIQUE NOT NULL AUTO_INCREMENT,
@@ -89,7 +94,7 @@ try {
                 create_at timestamp NOT NULL
             );
         ");
-        
+
         // 초기화 완료 플래그: 디렉토리에 쓰기 권한이 있는지 확인
         file_put_contents('db_initialized.txt', 'initialized');
         error_log("Database initialized successfully");
@@ -98,4 +103,3 @@ try {
     error_log("DB initialization error: " . $e->getMessage());
     die("Database connection failed: " . h($e->getMessage()));
 }
-?>
