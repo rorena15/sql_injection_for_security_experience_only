@@ -38,12 +38,12 @@ if ($level === '3') {
 } elseif ($level === '4') {
     $mission_title = '사용자 비밀번호 탈취';
     $mission_goal = '검색창에 SQL 인젝션을 입력하여 사용자 아이디와 비밀번호를 탈취하세요.';
-    $mission_hint = "' OR 1=1 UNION SELECT name, passwd, null FROM user_info ;--";
+    $mission_hint = "' OR 1=1 UNION SELECT null, name, passwd FROM user_info ;--";
     $answer_hint = "관리자 계정의 비밀번호를 입력하세요.";
 } elseif ($level === '5') {
     $mission_title = '플래그 획득';
     $mission_goal = '검색창에 SQL 인젝션을 입력하여 비밀 플래그를 획득하세요.';
-    $mission_hint = "' OR 1=1 UNION SELECT id, flag, null FROM flags WHERE is_secret = TRUE ;--";
+    $mission_hint = "' OR 1=1 UNION SELECT null, id, flag FROM flags WHERE is_secret = TRUE ;--";
     $answer_hint = "획득한 플래그 값을 입력하세요.";
 }
 
@@ -196,7 +196,6 @@ $csrf = csrf_token();
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>제목</th>
                         <th>내용</th>
                     </tr>
@@ -204,7 +203,6 @@ $csrf = csrf_token();
                 <tbody>
                     <?php foreach ($results as $row): ?>
                         <tr>
-                            <td><?php echo h($row['id']); ?></td>
                             <td><?php echo h($row['title']); ?></td>
                             <td><?php echo h($row['content']); ?></td>
                         </tr>
