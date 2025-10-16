@@ -1,6 +1,6 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) { session_start(); }
-include '../db/db_admin.php';
+include __DIR__ . '/../db/db_admin.php';
 
 if (!isset($_SESSION['username'])) {
     $_SESSION['error'] = "로그인이 필요합니다.";
