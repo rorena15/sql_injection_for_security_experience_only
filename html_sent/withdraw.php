@@ -30,7 +30,7 @@ if ($conn->query($sql) === TRUE) {
 
     session_destroy();
 
-    header("Location: ../index.html");
+    header("Location: ../index.php");
     exit();
 } else {
     echo "오류: " . $sql . "<br>" . $conn->error;
