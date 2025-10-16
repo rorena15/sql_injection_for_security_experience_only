@@ -2,11 +2,11 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-include './db_admin.php';
+include __DIR__ . '/db_admin.php';
 
 if (!isset($_SESSION['username'])) {
     $_SESSION['error'] = "로그인이 필요합니다.";
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit;
 }
 
@@ -108,12 +108,12 @@ $csrf = csrf_token();
     <meta charset="utf-8">
     <title>Local DB Manager (user_info)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="db_access.css">
+    <link rel="stylesheet" href="../css/db_access.css">
 </head>
 <body>
 <div class="wrap">
     <h1>Local DB Manager — <span class="muted">user_info</span></h1>
-    <p><a href="../index.php?logout=true" class="link">로그아웃</a> | <a href="./index.php" class="link">메인 페이지</a></p>
+    <p><a href="../index.php?logout=true" class="link">로그아웃</a> | <a href="../index.php" class="link">메인 페이지</a></p>
 
     <div class="top">
         <div class="card" style="flex:1">
