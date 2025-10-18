@@ -36,7 +36,7 @@ if ($level === '3') {
 ";
     $answer_hint = "유출된 테이블 이름 중 하나를 입력하세요.";
 } elseif ($level === '4') {
-    $mission_title = '사용자 비밀번호 탈취';
+    $mission_title = '비밀번호 탈취';
     $mission_goal = '검색창에 SQL 인젝션을 입력하여 사용자 아이디와 비밀번호를 탈취하세요.';
     $mission_hint = "' OR 1=1 UNION SELECT null, name, passwd FROM user_info ;--";
     $answer_hint = "관리자 계정의 비밀번호를 입력하세요.";
