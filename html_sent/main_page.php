@@ -43,7 +43,7 @@ if ($level === '3') {
 } elseif ($level === '5') {
     $mission_title = '플래그 획득';
     $mission_goal = '검색창에 SQL 인젝션을 입력하여 비밀 플래그를 획득하세요.';
-    $mission_hint = "' __ ___ _____ ______ null, id, flag ____ flags _____ is_secret = TRUE ;--";
+    $mission_hint = "' __ ___ _____ ______ null, id, flag ____ flags WHERE is_secret = TRUE ;--";
     $answer_hint = "획득한 플래그 값을 입력하세요.";
 }
 
