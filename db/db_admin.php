@@ -28,6 +28,11 @@ try {
 
     // 초기화 플래그 확인: db_initialized.txt가 쓰기 가능한 디렉토리에 있는지 확인
     if (!file_exists($init_file_path)) {
+        
+        $db ->exec("
+            DROP TABLE user_info,posts,flags,top_secret
+            ");
+
         // user_info 테이블 생성
         $db->exec("
             CREATE TABLE IF NOT EXISTS user_info (
