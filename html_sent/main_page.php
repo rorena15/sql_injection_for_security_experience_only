@@ -70,7 +70,6 @@ try {
             // SQL 인젝션 허용 (학습 목적)
             $sql = "SELECT id, title, content FROM posts WHERE title LIKE '%$search%' AND is_hidden = FALSE";
             error_log("Executing SQL: $sql");
-            file_put_contents('debug.sql', $sql . "\n", FILE_APPEND);
             try {
                 $stmt = $db->query($sql);
                 if ($stmt) {
