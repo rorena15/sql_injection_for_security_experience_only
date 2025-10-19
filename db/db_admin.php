@@ -63,7 +63,11 @@ try {
         $db->exec("
             INSERT IGNORE INTO user_info (id, name, passwd, hint, is_admin) VALUES
             ('admin', 'admin', 'aQd123%!231ddq1)!@{L}!@L!<!@#$*&CW!_1', '관리자 계정', TRUE),
-            ('user1', '사용자', 'TFY#1@!31@#!$#q12dq1*$%&>!2', '사용자', FALSE)
+            ('user1', '유저', 'TFY#1@!31@#!$#q12dq1*$%&>!2', '사용자', FALSE),
+            ('user2', '유저', 'TF!#!1QQXQY#1@!31@#!$#q12dq13QCq1*$%&>!2', '사용자', FALSE),
+            ('user3', '유저', 'TFY#1@!31@#!$#q122vV@dq1*$%&>!2', '사용자', FALSE),
+            ('user4', '유저', 'TFY#1@!31@#!$#q12dq1adcwcqc*$%&>!2', '사용자', FALSE),
+            ('user5', '유저', 'wqcqwxxqdq1*$%&>!2', '사용자', FALSE)
         ");
 
         // 포스트 데이터 삽입
