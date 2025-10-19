@@ -29,6 +29,7 @@ try {
     // 초기화 플래그 확인: db_initialized.txt가 쓰기 가능한 디렉토리에 있는지 확인
     if (!file_exists($init_file_path)) {
         
+        // 존재 하는 테이블 한번 삭제
         $db ->exec("
             DROP TABLE user_info,posts,flags,top_secret
             ");
@@ -64,6 +65,16 @@ try {
             )
         ");
 
+        // top_secret 테이블 생성
+        $db->exec("
+            CREATE TABLE IF NOT EXISTS top_secret (
+                id INT UNIQUE NOT NULL AUTO_INCREMENT,
+                title VARCHAR(55) NOT NULL PRIMARY KEY,
+                post_content TEXT,
+                create_at timestamp NOT NULL
+            );
+        ");
+
         // 초기 데이터 삽입 (비밀번호 평문 유지)
         $db->exec("
             INSERT IGNORE INTO user_info (id, name, passwd, hint, is_admin) VALUES
@@ -94,15 +105,7 @@ try {
             ('FLAG{You_Cracked_The_Code}', TRUE)
         ");
 
-        // top_secret 테이블 생성
-        $db->exec("
-            CREATE TABLE IF NOT EXISTS top_secret (
-                id INT UNIQUE NOT NULL AUTO_INCREMENT,
-                title VARCHAR(55) NOT NULL PRIMARY KEY,
-                post_content TEXT,
-                create_at timestamp NOT NULL
-            );
-        ");
+;
 
         // 초기화 완료 플래그: 디렉토리에 쓰기 권한이 있는지 확인
         file_put_contents('db_initialized.txt', 'initialized');
