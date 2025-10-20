@@ -136,12 +136,10 @@ error_log("Session state: username=" . ($_SESSION['username'] ?? 'none') . ", is
                         <label for="password">비밀번호:</label>
                         <input type="password" id="password" name="password" required aria-required="true">
                     </div>
-                    <div class= "btn_container">
                         <div class="button-container">
                             <input type="submit" value="로그인" class="submit">
                             <input type="button" value="회원가입" onclick="window.location.href='sign_up.html'" aria-label="회원가입 페이지로 이동">
                         </div>
-                    </div>
                 </form>
             <?php endif; ?>
             <div class="answer-form card" style="margin-top:12px">
