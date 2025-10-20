@@ -2,17 +2,18 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
     margin: 0;
-    padding: 0;
+    padding: 20px; /* body에 약간의 패딩 추가 */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    box-sizing: border-box;
 }
 
 .login__form {
-    width: 300px;
-    padding: 15px; /* 20px → 15px로 축소 */
+    width: 340px; /* 너비 살짝 증가 */
+    padding: 20px;
     border-radius: 10px;
     background-color: #fff;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
@@ -20,22 +21,22 @@ body {
 }
 
 .login__form h2 {
-    margin: 0 0 10px;
-    font-size: 20px; /* 컴팩트하게 조정 */
+    margin: 0 0 15px; /* 하단 마진 증가 */
+    font-size: 22px;
     text-align: center;
 }
 
 .login__form label {
     display: block;
-    margin: 4px 0 2px; /* 8px 0 4px → 4px 0 2px */
+    margin: 8px 0 4px;
     font-size: 14px;
 }
 
 .login__form input[type="text"],
 .login__form input[type="password"] {
     width: 100%;
-    padding: 8px; /* 12px → 8px */
-    margin: 4px 0; /* 8px 0 → 4px 0 */
+    padding: 10px;
+    margin: 4px 0 8px; /* 하단 마진 추가 */
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
@@ -44,73 +45,84 @@ body {
 .button-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 8px; /* 10px → 8px */
+    gap: 10px; /* 버튼 사이 간격 */
+    margin-top: 10px;
 }
 
 .login__form input[type="submit"],
 .login__form input[type="button"],
 .inline input[type="submit"],
 .secure-toggle button {
-    width: calc(48% - 6px); /* 동일 너비 유지 */
-    padding: 10px; /* 12px → 10px */
+    flex: 1; /* 버튼이 공간을 균등하게 차지 */
+    padding: 10px;
     border: none;
     border-radius: 5px;
     background-color: #4caf50;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-size: 14px;
 }
 
 .login__form input[type="submit"]:hover,
 .login__form input[type="button"]:hover,
-.inline input[type="submit"] :hover,
+.inline input[type="submit"]:hover,
 .secure-toggle button:hover {
     background-color: #45a049;
 }
 
 .error {
     color: #b00020;
-    margin: 4px 0;
+    margin: 8px 0;
     font-size: 13px;
     text-align: center;
+    background-color: #fdd;
+    padding: 8px;
+    border-radius: 5px;
 }
 
 .mission-section {
-    width: 300px; /* 로그인 폼과 동일 너비 */
-    padding: 15px;
+    width: 340px; /* 로그인 폼과 동일 너비 */
+    padding: 20px;
     border-radius: 10px;
     background-color: #fff;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
 }
 
 .mission-section h2 {
-    margin: 0 0 10px;
-    font-size: 20px;
+    margin: 0 0 15px;
+    font-size: 22px;
     text-align: center;
 }
 
+/* --- 💡 여기가 핵심 수정 부분입니다 --- */
 .missions {
-    display: flex;
-    flex-direction: column; /* 세로 배치로 컴팩트하게 */
-    gap: 8px;
+    display: grid; /* Flexbox 대신 Grid 사용 */
+    grid-template-columns: repeat(2, 1fr); /* 2개의 동일한 너비의 열 생성 */
+    gap: 10px; /* 카드 사이의 간격 */
 }
 
 .mission-card {
     background: #fff;
-    border: 1px solid #e8eef6;
-    border-radius: 5px;
-    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px 10px; /* 패딩 조정 */
     text-align: center;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.2s ease-in-out;
+    font-size: 14px;
+    line-height: 1.4;
 }
 
 .mission-card:hover {
-    background: #e8f4f8;
+    transform: translateY(-3px); /* 살짝 떠오르는 효과 */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-color: #4caf50;
 }
+/* --- 💡 수정 끝 --- */
 
 .secure-toggle {
-    margin-top: 10px;
+    margin-top: 20px;
     text-align: center;
 }
 
@@ -130,19 +142,10 @@ body {
 }
 
 @media (max-width: 720px) {
+    body {
+        padding: 10px;
+    }
     .login__form, .mission-section {
         width: 90%; /* 모바일에서 더 넓게 */
-    }
-    .login__form input[type="text"],
-    .login__form input[type="password"],
-    .login__form input[type="submit"],
-    .login__form input[type="button"],
-    .secure-toggle button {
-        width: 100%; /* 버튼도 전체 너비로 */
-        margin: 4px 0;
-    }
-    .button-container {
-        flex-direction: column;
-        gap: 8px;
     }
 }
