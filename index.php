@@ -150,7 +150,7 @@ error_log("Session state: username=" . ($_SESSION['username'] ?? 'none') . ", is
                     <input type="hidden" name="csrf_token" value="<?php echo h($csrf); ?>">
                     <input type="hidden" name="level" value="1">
                     <input type="text" name="answer" placeholder="정답 입력" required aria-label="Level 1 정답 입력">
-                    <input type="submit" value="제출" class="submit">
+                    <input type="submit"placeholder = "제출" class="submit">
                 </form>
             </div>
         </div>
