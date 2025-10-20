@@ -39,6 +39,7 @@ error_log("Session state: username=" . ($_SESSION['username'] ?? 'none') . ", is
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SQL Injection Training</title>
     <link rel="stylesheet" href="css/index.css">
+    <link rel="shortcut icon" href="sql.png" type="image/x-icon">
     <style>
         /* 모달 스타일 시작 */
         .modal-backdrop {
