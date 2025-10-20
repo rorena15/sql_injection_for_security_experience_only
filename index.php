@@ -1,6 +1,7 @@
 <?php
 session_start();
 include __DIR__ . '/db/db_admin.php';
+include __DIR__ . '/db/db_init.php';
 if (isset($_GET['logout']) && $_GET['logout'] === 'true') {
     session_unset();
     session_destroy();
