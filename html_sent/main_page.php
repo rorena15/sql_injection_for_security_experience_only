@@ -25,15 +25,14 @@ $stmt = null;
 
 // 미션 정보 설정
 $mission_title = '숨겨진 게시글 열람';
-$mission_goal = '검색창에 SQL 인젝션을 입력하여 숨겨진 게시글(<code>is_hidden = TRUE</code>)을 열람하세요.';
+$mission_goal = '검색창에 SQL 인젝션을 입력하여 숨겨진 게시글(<code>is_hidden = 1</code>)을 열람하세요.';
 $mission_hint = "' __ ___ _____ ______ id, title, content ____ posts WHERE _________ = 1 ;--";
 $answer_hint = "숨겨진 게시글의 제목 또는 내용을 입력하세요.";
 
 if ($level === '3') {
     $mission_title = 'DB 구조 유출';
-    $mission_goal = '검색창에 SQL 인젝션을 입력하여 데이터베이스 테이블 구조를 유출하세요.';
-    $mission_hint = "' __ ___ _____ ______ null, table_name, null ____ information_schema.tables WHERE table_schema = DATABASE() -- -
-";
+    $mission_goal = '검색창에 SQL 인젝션을 입력하여 데이터베이스 테이블의 종류를 알아 내세요.';
+    $mission_hint = "' __ ___ _____ ______ null, table_name, null ____ information_schema.tables WHERE table_schema = DATABASE() -- -";
     $answer_hint = "유출된 테이블 이름 중 하나를 입력하세요.";
 } elseif ($level === '4') {
     $mission_title = '비밀번호 탈취';
