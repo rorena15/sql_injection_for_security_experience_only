@@ -40,9 +40,6 @@ $results = [];
 $headers = [];
 $query_history = $_POST['query'] ?? 'SELECT * FROM ... LIMIT 100;';
 
-
-// ===== 로직 처리 =====
-
 // 1. 로그인 시도
 if ($page_state === 'login' && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'])) {
     $user = $_POST['username'];
@@ -105,32 +102,8 @@ if ($page_state === 'query' && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_
     <meta charset="utf-8">
     <title>Root DB Manager</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f7fa; color: #222; }
-        .wrap { max-width: 1100px; margin: 0 auto; }
-        h1, h2 { margin: 0 0 12px; font-size: 20px; }
-        .card { background: #fff; border-radius: 8px; padding: 14px; box-shadow: 0 6px 18px rgba(0,0,0,0.06); border: 1px solid #e8eef6; margin-bottom: 12px; }
-        label { display: block; margin-bottom: 4px; font-weight: bold; }
-        input[type=text], input[type=password] { width: 100%; padding: 8px; border: 1px solid #ccd6e2; border-radius: 6px; box-sizing: border-box; margin-bottom: 8px; }
-        textarea { width: 100%; height: 150px; padding: 8px; border: 1px solid #ccd6e2; border-radius: 6px; font-family: monospace; font-size: 14px; box-sizing: border-box; margin-bottom: 8px; }
-        button { padding: 10px 15px; border-radius: 6px; border: none; background: #4caf50; color: #fff; cursor: pointer; font-size: 16px; }
-        button:hover { background: #45a049; }
-        .message { padding: 12px; border-radius: 6px; font-weight: bold; }
-        .message.error { background-color: #f8e8e8; color: #b00020; }
-        .message.success { background-color: #e8f4f8; color: #2e7d32; }
-        table { width: 100%; border-collapse: collapse; margin-top: 12px; table-layout: auto; }
-        th, td { padding: 10px; border-bottom: 1px solid #eef3f7; text-align: left; font-size: 14px; word-break: break-all; }
-        thead th { background: #4caf50; color: #fff; font-weight: 600; position: sticky; top: 0; }
-        tbody tr:nth-child(odd) { background-color: #fafafa; }
-        .table-wrap { max-height: 60vh; overflow: auto; }
-        .db-list ul { list-style: none; padding: 0; }
-        .db-list li a { display: block; padding: 8px; text-decoration: none; color: #007bff; border-radius: 4px; }
-        .db-list li a:hover { background-color: #f0f0f0; }
-        .header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .header-actions .info { font-size: 14px; color: #666; }
-        .header-actions a { text-decoration: none; background: #6c757d; color: white; padding: 8px 12px; border-radius: 6px; font-size: 14px; }
-        .header-actions a:hover { background: #5a6268; }
-    </style>
+    <link rel="shortcut icon" href="../sql.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/db_web_shell.css">
 </head>
 <body>
 <div class="wrap">

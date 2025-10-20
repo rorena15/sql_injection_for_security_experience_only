@@ -109,6 +109,7 @@ $csrf = csrf_token();
     <title>Local DB Manager (user_info)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/db_access.css">
+    <link rel="shortcut icon" href="sql.png" type="image/x-icon">
 </head>
 <body>
 <div class="wrap">
