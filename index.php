@@ -183,9 +183,9 @@ error_log("Session state: username=" . ($_SESSION['username'] ?? 'none') . ", is
                     aria-label="Level 5: 플래그 획득 미션 시작">
                     Level 5<br>플래그 획득
                 </div>
-                <div class="mission-card <?php echo isset($_SESSION['cleared_levels'][5]) ? '' : 'disabled'; ?>" 
+				<div class="mission-card <?php echo isset($_SESSION['cleared_levels'][5]) ? '' : 'disabled'; ?>" 
                     onclick="startMission(6)" role="button" tabindex="<?php echo isset($_SESSION['cleared_levels'][5]) ? '0' : '-1'; ?>" 
-                    aria-label="Level 6: 게시글 추가 미션 시작">
+                    aria-label="Level 5: 플래그 획득 미션 시작">
                     Level 6<br>게시글 추가
                 </div>
             </div>
