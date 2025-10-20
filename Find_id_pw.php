@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>아이디 및 비밀번호 찾기</title>
     <link rel="stylesheet" href="css/Find_id_pw.css">
+    <link rel="shortcut icon" href="sql.png" type="image/x-icon">
     </head>
 <body>
     <div class="login__form">
         <h2>아이디 찾기</h2>
-        <form action="find.php" method="post">
+        <form action="./php/find.php" method="post">
             <label for="name">이름 :</label>
             <input type="text" name="name" id="name" required><br>
             <label for="hint">힌트 :</label>
@@ -19,7 +20,7 @@
         </form>
         <script>
         function goToIndexPage() {
-            window.location.href = 'index.html';
+            window.location.href = 'index.php';
         }
     </script>
 </body>

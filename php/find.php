@@ -16,7 +16,7 @@
             }
 
             // 이름과 힌트를 기준으로 사용자 정보 조회
-            $sql = "SELECT id FROM sign_up_list WHERE name='$name' AND hint='$hint'";
+            $sql = "SELECT id FROM user_info WHERE name='$name' AND hint='$hint'";
             $result = $conn->query($sql);
 
             // 결과 확인 및 처리
@@ -46,7 +46,9 @@
 
             <!DOCTYPE html>
 <html lang="ko">
-<head></head>
+<head>
+    <link rel="shortcut icon" href="sql.png" type="image/x-icon">
+</head>
 <body>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </body>
