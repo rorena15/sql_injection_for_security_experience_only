@@ -26,7 +26,7 @@ $stmt = null;
 // 미션 정보 설정
 $mission_title = '숨겨진 게시글 열람';
 $mission_goal = '검색창에 SQL 인젝션을 입력하여 숨겨진 게시글(<code>is_hidden = 1</code>)을 열람하세요.';
-$mission_hint = "' __ ___ _____ ______ id, title, content ____ posts WHERE _________ = 1 ;--";
+$mission_hint = "' __ ___ _____ ______ id, title, content ____ posts WHERE _________ = 1 ;-- -";
 $answer_hint = "숨겨진 게시글의 제목 또는 내용을 입력하세요.";
 
 if ($level === '3') {
@@ -37,17 +37,17 @@ if ($level === '3') {
 } elseif ($level === '4') {
     $mission_title = '비밀번호 탈취';
     $mission_goal = '검색창에 SQL 인젝션을 입력하여 사용자 아이디와 비밀번호를 탈취하세요.';
-    $mission_hint = "' __ ___ _____ ______ null, name, passwd ____ _________ ;--";
+    $mission_hint = "' __ ___ _____ ______ null, name, passwd ____ _________ ;-- -";
     $answer_hint = "관리자 계정의 비밀번호를 입력하세요.";
 } elseif ($level === '5') {
     $mission_title = '플래그 획득';
     $mission_goal = '검색창에 SQL 인젝션을 입력하여 비밀 플래그를 획득하세요.';
-    $mission_hint = "' __ ___ _____ ______ null, id, flag ____ flags WHERE is_secret = TRUE ;--";
+    $mission_hint = "' __ ___ _____ ______ null, id, flag ____ flags WHERE is_secret = TRUE ;-- -";
     $answer_hint = "획득한 플래그 값을 입력하세요.";
 }  elseif ($level === '6') {
     $mission_title = '게시글 추가';
     $mission_goal = '검색창에 SQL 인젝션을 입력하여 원하는 게시글을 추가하세요.';
-    $mission_hint = "'; INSERT INTO posts (title, content, is_hidden) VALUES ('_____________', '____________', FALSE); --";
+    $mission_hint = "'; INSERT INTO posts (title, content, is_hidden) VALUES ('_____________', '____________', FALSE); -- -";
     $answer_hint = "쿼리를 실행한 뒤 검색 창을 지운 뒤 다시 검색 버튼을 클릭해보세요.";
 }
 
