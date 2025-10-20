@@ -48,7 +48,7 @@ if ($level === '3') {
     $mission_title = '게시글 추가';
     $mission_goal = '검색창에 SQL 인젝션을 입력하여 원하는 게시글을 추가하세요.';
     $mission_hint = "'; INSERT INTO posts (title, content, is_hidden) VALUES ('_____________', '____________', FALSE); -- -";
-    $answer_hint = "쿼리를 실행한 뒤 검색 창을 지운 뒤 다시 검색 버튼을 클릭해보세요.";
+    $answer_hint = "쿼리를 실행한 뒤 검색 창을 지운 뒤 다시 검색 한 후 직접 삽입한 게시물의 제목을 입력 하세요.";
 }
 
 // SQL 검색 로직

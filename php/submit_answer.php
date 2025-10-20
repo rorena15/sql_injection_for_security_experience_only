@@ -93,8 +93,8 @@ if ($level === '1') {
                 $message = "실제로는 이렇게 작동합니다:\nSELECT id, title, content FROM posts WHERE title LIKE '%<span style=\"color:#0000FF;\">' OR 1=1 UNION SELECT</span><span style=\"color:red;\"> id, flag, null FROM flags WHERE is_secret = TRUE ;</span><span style=\"color:#808080;\"> -- %' AND is_hidden = FALSE</span>";
             }
         } elseif($level ==='6'){
-            $stmt = $db ->prepare("SELECT title FROM posts WHERE id >= 9 LIMIT 1");
-            $stmt ->execute();
+            $stmt = $db ->prepare("SELECT title FROM posts WHERE id > 8 AND (title = :answer6)");
+            $stmt ->execute([':answer6' => $answer]);
             $vulun_title = $stmt ->fetchColumn();
             if($vulun_title !== false && $answer === $vulun_title){
                 $is_correct = true;
