@@ -146,11 +146,11 @@ error_log("Session state: username=" . ($_SESSION['username'] ?? 'none') . ", is
                 <h3>Level 1 정답 제출</h3>
                 <p>힌트: 관리자 계정으로 로그인 후 얻은 관리자 이름 정보를 입력하세요.</p>
                 
-                <form action="php/submit_answer.php" method="post" class="inline" style="gap:8px">
+                <form action="php/submit_answer.php" method="post" class="inline" style="text-align: center;">
                     <input type="hidden" name="csrf_token" value="<?php echo h($csrf); ?>">
                     <input type="hidden" name="level" value="1">
                     <input type="text" name="answer" placeholder="정답 입력" required aria-label="Level 1 정답 입력">
-                    <button type="submit">제출</button>
+                    <input type="submit" value="제출" class="submit">
                 </form>
             </div>
         </div>
