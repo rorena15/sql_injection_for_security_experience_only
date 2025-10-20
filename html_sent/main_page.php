@@ -135,6 +135,7 @@ $csrf = csrf_token();
     <title>SQL Injection Training - Level <?php echo h($level); ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/main_page.css">
+    <link rel="shortcut icon" href="../sql.png" type="image/x-icon">
     <style>
         .modal-backdrop {
             position: fixed; inset: 0; background: rgba(0,0,0,0.45);
