@@ -44,12 +44,17 @@ if ($level === '3') {
     $mission_goal = '검색창에 SQL 인젝션을 입력하여 비밀 플래그를 획득하세요.';
     $mission_hint = "' __ ___ _____ ______ null, id, flag ____ flags WHERE is_secret = TRUE ;--";
     $answer_hint = "획득한 플래그 값을 입력하세요.";
+}  elseif ($level === '6') {
+    $mission_title = '게시글 추가';
+    $mission_goal = '검색창에 SQL 인젝션을 입력하여 원하는 게시글을 추가하세요.';
+    $mission_hint = "'; INSERT INTO posts (title, content, is_hidden) VALUES ('_____________', '____________', FALSE); --";
+    $answer_hint = "획득한 플래그 값을 입력하세요.";
 }
 
 // SQL 검색 로직
 $pre_count = $db->query("SELECT COUNT(*) FROM posts")->fetchColumn();
 error_log("Before search - Posts count: $pre_count");
-
+$stmt = null;
 try {
     if ($secure_mode === 'on') {
         $sql = "SELECT id, title, content FROM posts WHERE title LIKE :search AND is_hidden = FALSE";
@@ -58,14 +63,27 @@ try {
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $results[] = $row;
         }
-    } else {
-        if ($search === '') {
+    } else{
+            if ($level === '6' && $search !== '') {
+            $sql = "SELECT id, title, content FROM posts WHERE title LIKE '%$search%' AND is_hidden = FALSE";
+            error_log("Executing SQL for Level 6 (query): $sql");
+            $stmt = $db->query($sql); // exec() 대신 query() 사용
+            if ($stmt) {
+                $stmt->closeCursor();
+            }
+
+            $stmt = $db->query("SELECT id, title, content FROM posts WHERE is_hidden = FALSE");
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $results[] = $row;
+            }
+
+        }else if ($search === '') {
             $sql = "SELECT id, title, content FROM posts WHERE is_hidden = FALSE";
             $stmt = $db->query($sql);
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $results[] = $row;
             }
-        } else {
+        }else {
             // SQL 인젝션 허용 (학습 목적)
             $sql = "SELECT id, title, content FROM posts WHERE title LIKE '%$search%' AND is_hidden = FALSE";
             error_log("Executing SQL: $sql");
@@ -90,16 +108,17 @@ try {
                 }
             }
         }
-    }
-
     error_log("Cleared levels: " . json_encode($_SESSION['cleared_levels']));
     error_log("Result count: " . count($results));
-    if ($stmt) {
-        $stmt->closeCursor();
-    }
+}
 } catch (PDOException $e) {
     $errors[] = "검색 오류: " . h($e->getMessage());
     error_log("Search error: " . $e->getMessage());
+}
+    finally {
+    if ($stmt) {
+        $stmt->closeCursor();
+    }
 }
 
 $post_count = $db->query("SELECT COUNT(*) FROM posts")->fetchColumn();
@@ -306,7 +325,7 @@ $csrf = csrf_token();
 				const nextLevel = currentLevel + 1;
 				const buttons = [];
 
-				if (currentLevel === 5) { // 🚩 Level 5
+				if (currentLevel === 6) { // 🚩 Level 6
 					buttons.push({
 						text: '🏆 미션 완료! 🏆',
 						className: 'btn-green',
@@ -317,8 +336,8 @@ $csrf = csrf_token();
 					});
 					showCustomAlert(data.message,`🎉 최종 미션 클리어!`,	buttons);
 					
-				} else { // 🚩 Level 2, 3, 4
-					if (nextLevel <= 5) { // 다음 레벨로 이동하는 버튼
+				} else { // 🚩 Level 2, 3, 4,5
+					if (nextLevel <= 6) { // 다음 레벨로 이동하는 버튼
 						buttons.push({
 							text: `다음 단계로 >>`,
 							className: 'btn-green',
