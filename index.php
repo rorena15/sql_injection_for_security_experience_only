@@ -1,7 +1,6 @@
 <?php
 session_start();
 include __DIR__ . '/db/db_admin.php';
-
 if (isset($_GET['logout']) && $_GET['logout'] === 'true') {
     session_unset();
     session_destroy();
@@ -40,6 +39,8 @@ error_log("Session state: username=" . ($_SESSION['username'] ?? 'none') . ", is
     <title>SQL Injection Training</title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="shortcut icon" href="sql.png" type="image/x-icon">
+    <script src="js/btn_mover.js"></script>
+    <script src="js/modal_fun.js"></script>
     <style>
         /* 모달 스타일 시작 */
         .modal-backdrop {
@@ -135,9 +136,11 @@ error_log("Session state: username=" . ($_SESSION['username'] ?? 'none') . ", is
                         <label for="password">비밀번호:</label>
                         <input type="password" id="password" name="password" required aria-required="true">
                     </div>
-                    <div class="button-container">
-                        <input type="submit" value="로그인" class="submit">
-                        <input type="button" value="회원가입" onclick="window.location.href='sign_up.html'" aria-label="회원가입 페이지로 이동">
+                    <div class= "btn_container">
+                        <div class="button-container">
+                            <input type="submit" value="로그인" class="submit">
+                            <input type="button" value="회원가입" onclick="window.location.href='sign_up.html'" aria-label="회원가입 페이지로 이동">
+                        </div>
                     </div>
                 </form>
             <?php endif; ?>
