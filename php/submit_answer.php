@@ -69,10 +69,10 @@ if ($level === '1') {
                 $message = "실제로는 이렇게 작동합니다:\nSELECT id, title, content FROM posts WHERE title LIKE '%<span style=\"color:#0000FF;\">' OR 1=1 UNION SELECT</span><span style=\"color:red;\"> id, title, content FROM posts WHERE is_hidden = 1 ;</span><span style=\"color:#808080;\"> -- %' AND is_hidden = FALSE</span>";
             }
         } elseif ($level === '3') {
-    // 입력된 정답이 'top_secret'과 일치하는지 직접 확인
-    if ($answer === 'top_secret') {
-        $is_correct = true;
-        $message = "실제로는 이렇게 작동합니다:\nSELECT id, title, content FROM posts WHERE title LIKE '%<span style=\"color:#0000FF;\">' OR 1=1 UNION SELECT</span><span style=\"color:red;\"> null, table_name, null FROM information_schema.tables WHERE table_schema = DATABASE()</span><span style=\"color:#808080;\"> -- - %' AND is_hidden = FALSE</span>";
+            // 입력된 정답이 'top_secret'과 일치하는지 직접 확인
+            if ($answer === 'top_secret') {
+            $is_correct = true;
+            $message = "실제로는 이렇게 작동합니다:\nSELECT id, title, content FROM posts WHERE title LIKE '%<span style=\"color:#0000FF;\">' OR 1=1 UNION SELECT</span><span style=\"color:red;\"> null, table_name, null FROM information_schema.tables WHERE table_schema = DATABASE()</span><span style=\"color:#808080;\"> -- - %' AND is_hidden = FALSE</span>";
     }
         } elseif ($level === '4') {
             // is_admin 플래그가 참인 사용자의 비밀번호와 일치하는지 확인
@@ -92,7 +92,16 @@ if ($level === '1') {
                 $is_correct = true;
                 $message = "실제로는 이렇게 작동합니다:\nSELECT id, title, content FROM posts WHERE title LIKE '%<span style=\"color:#0000FF;\">' OR 1=1 UNION SELECT</span><span style=\"color:red;\"> id, flag, null FROM flags WHERE is_secret = TRUE ;</span><span style=\"color:#808080;\"> -- %' AND is_hidden = FALSE</span>";
             }
-        } else {
+        } elseif($level ==='6'){
+            $stmt = $db ->prepare("SELECT title FROM posts WHERE id >= 9 LIMIT 1");
+            $stmt ->execute();
+            $vulun_title = $stmt ->fetchColumn();
+            if($vulun_title !== false && $answer === $vulun_title){
+                $is_correct = true;
+                $message = "예전 광고판 초등학생 해킹 사례처럼 흔적을 남길수도 흔적없이 사라질수도 있습니다";
+            }
+        }
+        else {
             $message = "잘못된 레벨입니다.";
         }
     } catch (PDOException $e) {
